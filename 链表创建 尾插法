@@ -1,0 +1,43 @@
+#include<stdio.h>
+#include<stdlib.h>
+typedef struct node_type{        //链点结构 
+	int data;
+	struct node_type *next;
+}node_type;
+struct list_type{               //链表结构 
+	node_type *head;
+	node_type *tail;
+	int length;
+};
+int main()
+{
+	int i,length;
+	printf("Enter length of your data.\n");    //链表长度 
+	scanf("%d",&length);
+	printf("Enter your data.\n");
+	node_type *head=(node_type *)malloc(sizeof(node_type));  //创建头节点 
+	scanf("%d",&head->data);
+	node_type *p=(node_type *)malloc(sizeof(node_type));     //创建p节点，并将头节点赋给p 
+	p=head;
+	for(i=0;i<length-1;i++)                                 //循环创建s节点 
+	{
+		node_type *s=(node_type *)malloc(sizeof(node_type));
+		scanf("%d",&s->data);
+		s->next=NULL;                                    //s后的节点为空指针 
+		p->next=s;                                       //s为p的后一个连点 
+		p=s;                                             //将s的地址赋给p 
+	}
+	struct list_type list{
+		head,
+		p,
+		length
+	};
+	
+	p=head;                                           //链表的遍历 
+	for(i=0;i<list.length;i++)
+	{
+		printf("%d",p->data);
+		p=p->next;
+	}
+	return 0;
+}
